@@ -128,7 +128,7 @@ def checking_batchsize_inference(model):
                 print('The validity of the batch size cannot be checked since the given B is to small.')
                 print('Please give larger B_relu or B_max.')
                 sys.exit("Terminated.")
-            except:
+            else:
                print('The batch size of INFERENCE seems to be large for your GPU.')
                print('Your current batch size is ' + str(args.batch_inf) + '. Try reducing `--batch_inf`.')
                sys.exit("Terminated.")
