@@ -1,5 +1,10 @@
 #!/bin/bash
 
+CreateDIR=./pretrained
+if [ ! -d $CreateDIR ]; then
+  mkdir $CreateDIR
+fi
+
 file_id="1bnD4cZC6oKLRx7WG5bbyWmHDhsVRBVzz"
 curl -sc /tmp/cookie "https://drive.google.com/uc?export=download&id=${file_id}" > /dev/null
 code="$(awk '/_warning_/ {print $NF}' /tmp/cookie)"
