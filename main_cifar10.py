@@ -42,7 +42,7 @@ parser.add_argument('--B_search', default=5.0, dest='B_search', type=float,
                     help='The size of the interval to find B such that all input values fall within the approximate region.')
 parser.add_argument('--dataset_path', default='../dataset/CIFAR10', dest='dataset_path', type=str,
                     help='The path which contains the CIFAR10.')
-parser.add_argument('--params_name', default='1', dest='params_name', type=str,
+parser.add_argument('--params_name', default='ours', dest='params_name', type=str,
                     help='The pre-trained parameters file name. Please omit `.pt`.')
 args = parser.parse_args()
 
