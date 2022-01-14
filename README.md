@@ -113,10 +113,10 @@ The precision parameter or approximation range can be customized here also.
 Please check the details below of the arguments and set the proper path of the dataset.
 
 - `--backbone`(default: `resnet152`): Backbone model. For ImageNet, the available arguments are followings: 
-  - [ResNet](https://arxiv.org/pdf/1512.03385.pdf): `resnet18` `resnet34` `resnet50` `resnet101` `resnet152`
-  - [VGGNet](https://arxiv.org/pdf/1409.1556.pdf) (with batch normalization): `vgg11bn` `vgg13bn` `vgg16bn` `vgg19bn`
-  - [GoogLeNet](http://arxiv.org/abs/1409.4842): `googlenet`
-  - [Inception_v3](http://arxiv.org/abs/1512.00567): `inception_v3`
+  - ResNet: `resnet18` `resnet34` `resnet50` `resnet101` `resnet152`
+  - VGGNet (with batch normalization): `vgg11bn` `vgg13bn` `vgg16bn` `vgg19bn`
+  - GoogLeNet: `googlenet`
+  - Inception_v3: `inception_v3`
 - `--alpha`(default: `14`): The precision parameter $\alpha$ for approximation. Integers from 4 to 14 can be used.
 - `--B_relu`(default: `100.0`): The value of $B$, which is the bound of approximation range $[-B,B]$ for the approximate ReLU function. 
 - `--B_max`(default: `10.0`): The value of $B$, which is the bound of approximation range $[-B,B]$ for the approximate max-pooling function.
