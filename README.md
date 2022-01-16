@@ -68,6 +68,8 @@ python main_cifar10.py --mode train --backbone resnet20 --params_name new
 
 After training, the pre-trained parameters will be saved at `./pretrained/cifar10/`, with filename `resnet20_new.pt`.
 
+### Inference with achieved pre-trained parameter
+
 With your own pre-trained parameters, an approximate inference can be done by running `main_cifar.py` setting the argument `--mode` to `inf`, same as before.
 You can customize the precision parameter, approximation range, batch size, and pre-trained parameters of the inference by setting proper arguments of the code.
 
