@@ -71,14 +71,6 @@ After training, the pre-trained parameters will be saved at `./pretrained/cifar1
 With your own pre-trained parameters, an approximate inference can be done by running `main_cifar.py` setting the argument `--mode` to `inf`, same as before.
 You can customize the precision parameter, approximation range, batch size, and pre-trained parameters of the inference by setting proper arguments of the code.
 
-**Note.** For the proposed method, we have to determine appropriate approximation ranges $[-B_relu, B_relu]$, and $[-B_max, B_max]$, for the approximate ReLU and max-pooling function, respectively.
-If $B_relu$ and $B_max$ are not large enough, there may be an input value that does not fall in the approximation range for those approximate functions.
-On the other hand, if $B_relu$ and $B_max$ are too large, the error of the inference increases (see Lemma 1 (b) and (c)). 
-To search an appropriate $B_relu$ and $B_max$, we provide the argument `--B_search`. 
-During the inference, if the code detects the input value which does not fall in the approximation range, the code terminates the inference.
-Then, the code increases the value of $B_relu$ (or $B_max$) by `B_search` and starts a new inference from the beginning.
-The value of $B_relu$ (or $B_max$) will continue to increase until the code finishes the whole inference.
-
 - `--gpu`(default: `0`): ID of GPU that is used for training and inference.
 - `--backbone`(default: `resnet20`): Backbone model. For CIFAR-10, the available arguments are followings: 
   - ResNet: `resnet20` `resnet32` `resnet44` `resnet56` `resnet110`
@@ -95,6 +87,15 @@ The value of $B_relu$ (or $B_max$) will continue to increase until the code fini
 - `--dataset_path`(default: `../dataset/CIFAR10`): The path of directory which contains the CIFAR-10.
 - `--params_name`: The name of the pre-trained parameter file that you set at the training step. If this argument is not set, the code inference the proposed approximate model with pre-trained parameters we used.
 If this argument is set, the code loads the pre-trained parameter `./pretrained/cifar10/<<backbone>>_<<params_name>.pt`.
+
+**Note.** For the proposed method, we have to determine appropriate approximation ranges $[-B_relu, B_relu]$, and $[-B_max, B_max]$, for the approximate ReLU and max-pooling function, respectively.
+If $B_relu$ and $B_max$ are not large enough, there may be an input value that does not fall in the approximation range for those approximate functions.
+On the other hand, if $B_relu$ and $B_max$ are too large, the error of the inference increases (see Lemma 1 (b) and (c)). 
+To search an appropriate $B_relu$ and $B_max$, we provide the argument `--B_search`. 
+During the inference, if the code detects the input value which does not fall in the approximation range, the code terminates the inference.
+Then, the code increases the value of $B_relu$ (or $B_max$) by `B_search` and starts a new inference from the beginning.
+The value of $B_relu$ (or $B_max$) will continue to increase until the code finishes the whole inference.
+
 
 ## Simulation for Section V-B (ImageNet)
 
