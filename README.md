@@ -30,7 +30,7 @@ First, you have to download the pre-trained parameter that we used by following 
 
 As an example for reproducing our results, the command below gives an inference result of the approximate ResNet20 by the proposed composition of minimax polynomials with the precision parameter 14.
 For inference, the argument `--mode` must be set to `inf`.
-It assumes that the CIFAR-10 dataset is located in `../dataset/cifar10`. You can change the directory of the dataset by setting the argument `--dataset_path`.
+The code assumes that the CIFAR-10 dataset is located in `../dataset/cifar10`. You can change the directory of the dataset by setting the argument `--dataset_path`.
 
 ```
 python main_cifar10.py --mode inf --backbone resnet20 --alpha 14
@@ -46,8 +46,8 @@ Please check the details below of the arguments.
 - `--approx_method`(default: `proposed`): Method of approximating non-arithmetic operations. For `square` and `relu_aq`, we use exact max-pooling function.
   - `proposed`: Proposed composition of minimax polynomials.
   - `square`: approximate ReLU as $x^2$, 
-  - `relu_aq`: approximate ReLU as $2^-3*x^2+2^-1*x+2^-2$.
-- `--batch_inf`(default: `128`): Batch size for inference. The program will be terminated if the batch size is small to execute inference.
+  - `relu_aq`: approximate ReLU as $2^-3x^2+2^-1x+2^-2$.
+- `--batch_inf`(default: `128`): Batch size for inference. The program terminates if the batch size is small to execute inference.
 - `--alpha`(default: `14`): The precision parameter $\alpha$ for approximation. Integers from 4 to 14 can be used.
 - `--dataset_path`(default: `../dataset/CIFAR10`): The path of the directory which contains the CIFAR-10.
 
@@ -87,14 +87,14 @@ The value of $B_relu$ (or $B_max$) will continue to increase until the code fini
   - `proposed`: Proposed composition of minimax polynomials.
   - `square`: approximate ReLU as $x^2$, 
   - `relu_aq`: approximate ReLU as $2^-3*x^2+2^-1*x+2^-2$.
-- `--batch_inf`(default: `128`): Batch size for inference. The program will be terminated if batch size is small to execute inference.
+- `--batch_inf`(default: `128`): Batch size for inference. The program terminates if batch size is small to execute inference.
 - `--alpha`(default: `14`): The precision parameter $\alpha$ for approximation. Integers from 4 to 14 can be used.
 - `--B_relu`(default: `50.0`): The value of $B$, where $[-B,B]$ is the approximation range for the approximate ReLU function. 
 - `--B_max`(default: `50.0`): The value of $B$, where $[-B,B]$ is the approximation range for the approximate max-pooling function.
 - `--B_search`(default: `5.0`): The step size for searching $B$ such that all input values fall within the approximation range.
 - `--dataset_path`(default: `../dataset/CIFAR10`): The path of directory which contains the CIFAR-10.
 - `--params_name`: The name of the pre-trained parameter file that you set at the training step. If this argument is not set, the code inference the proposed approximate model with pre-trained parameters we used.
-If this argument is set, the code will load the pre-trained parameter `./pretrained/cifar10/<<backbone>>_<<params_name>.pt`.
+If this argument is set, the code loads the pre-trained parameter `./pretrained/cifar10/<<backbone>>_<<params_name>.pt`.
 
 ## Simulation for Section V-B (ImageNet)
 
@@ -102,6 +102,7 @@ We implemented the inference code for ImageNet in the file `main_imagenet.py`. Y
 Unlike CIFAR-10, it takes a lot of time to achieve pre-trained parameters for a standard deep learning model for ImageNet. 
 Therefore, we did not implement the training mode for ImageNet, and we apply the pre-trained parameter given by PyTorch.
 For example, the inference result for ResNet-152 in Table V can be reproduced by following the command below.
+Similarly, the code assumes that the ImageNet dataset is located in `../dataset/imagenet`. You can change the directory of the dataset by setting the argument `--dataset_path`.
 
 ```
 python main_imagenet.py --backbone resnet152
@@ -124,7 +125,7 @@ Please check the details below of the arguments and set the proper path of the d
 - `--batch_inf`(default: `16`): Batch size for inference.
 - `--dataset_path`: The path of the directory which contains the ImageNet. The default directory is `../dataset/imagenet`.
 
-**Note.** Especially for inference ImageNet, the batch size should be determined more carefully due to the computation for the proposed polynomials. Refer to the batch size we used in our environment, NVIDIA GeForce RTX 3090.
+**Note.** Especially for inference ImageNet, the batch size should be determined more carefully due to the computation for the proposed polynomials. Refer to the batch size we used in our GPU environment, NVIDIA GeForce RTX 3090.
 
 |   Backbone   | Batch size |
 |:------------:|:----------:|
