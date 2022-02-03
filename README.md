@@ -25,6 +25,7 @@ The code can reproduce the exact result of the simulation in Section V-A (i.e., 
 First, you have to download the pre-trained parameter that we used by following the command below at the main directory.
 
 ```
+chmod +x downloadparams.sh
 ./downloadparams.sh
 ```
 
